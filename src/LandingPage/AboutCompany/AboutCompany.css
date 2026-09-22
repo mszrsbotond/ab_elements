@@ -1,0 +1,154 @@
+/* About + Partners share one viewport band: About takes the room it needs,
+   Partners always lands on the bottom edge. */
+.about-band{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+}
+
+.about{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0rem var(--section-px) clamp(1rem, 2vh, 1.5rem);
+}
+
+.about-inner{
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.about-title{
+    margin-bottom: clamp(1rem, 2.5vh, 2rem);
+    color: var(--color-navy);
+    font-size: var(--text-5xl);
+    font-weight: var(--weight-extrabold);
+    text-align: center;
+}
+
+/* the photo sizes itself from its height, the text column is a fixed measure,
+   and the pair is centered as one block */
+.about-grid{
+    display: grid;
+    grid-template-columns: auto minmax(0, 32rem);
+    justify-content: center;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+}
+
+.about-media-left{
+    position: relative;
+}
+
+.about-img-main{
+    display: block;
+    height: min(66vh, 700px);
+    width: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: center 65%;
+    border-radius: var(--radius-m);
+}
+
+/* overhangs the photo's right edge, as in the design */
+.about-badge{
+    position: absolute;
+    right: 0;
+    bottom: clamp(1.5rem, 4vh, 3.5rem);
+    transform: translateX(38%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-m) var(--space-2xl);
+    background-color: var(--color-white);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+}
+
+.about-badge-label{
+    color: var(--color-text-faint);
+    font-size: var(--text-s);
+}
+
+.about-badge-year{
+    color: var(--color-navy);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-extrabold);
+    line-height: var(--leading-none);
+}
+
+.about-content{
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 4vh, 3rem);
+}
+
+.about-text{
+    color: var(--color-text);
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+}
+
+.right-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vh, 2.25rem);
+}
+
+.about-stats{
+    display: flex;
+    gap: clamp(2rem, 6vw, 5rem);
+}
+
+.stat{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
+.stat-number{
+    color: var(--color-navy);
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-extrabold);
+    line-height: var(--leading-none);
+}
+
+.stat-label{
+    color: var(--color-text-subtle);
+    font-size: var(--text-s);
+}
+
+.about-img-secondary{
+    display: block;
+    width: 100%;
+    max-width: 26rem;
+    aspect-ratio: 1 / 1;
+    max-height: 30vh;
+    object-fit: cover;
+    border-radius: var(--radius-m);
+    align-self: center;
+}
+
+@media (max-width: 1000px){
+    .about{
+        justify-content: flex-start;
+    }
+
+    .about-grid{
+        grid-template-columns: minmax(0, 32rem);
+    }
+
+    .about-media-left{
+        justify-self: center;
+    }
+
+    .about-badge{
+        right: var(--space-xl);
+        transform: none;
+    }
+
+}

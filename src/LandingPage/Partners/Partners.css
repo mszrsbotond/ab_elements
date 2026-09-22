@@ -1,0 +1,106 @@
+.partners{
+    flex: 0 0 auto;
+    padding: 0 0 clamp(1.25rem, 3vh, 2.5rem);
+    background-color: var(--color-bg);
+    overflow: hidden;
+}
+
+.partners-title{
+    padding-left: 0;
+    color: var(--color-navy);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    text-align: center;
+}
+
+.partners-subtitle{
+    margin-top: var(--space-xs);
+    color: var(--color-text-subtle);
+    font-size: var(--text-s);
+    text-align: center;
+}
+
+.partners-marquee{
+    position: relative;
+    margin-top: clamp(0.75rem, 2vh, 1.5rem);
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.partners-track{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: var(--space-6xl);
+    animation: partners-scroll 30s linear infinite;
+}
+
+.logo-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.partners-track .logo{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: opacity var(--duration-fast) ease, filter var(--duration-fast) ease;
+}
+
+/* base layer: every logo grayed down, colored on hover */
+.partners-track--gray .logo{
+    filter: grayscale(1);
+    opacity: 0.55;
+}
+
+.partners-track--gray .logo:hover{
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* overlay layer: identical logos, always in color, but only
+   revealed through a band in the middle so whichever logo is
+   currently passing through the center appears colored */
+.partners-track--color{
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to right,
+        transparent 0, transparent calc(50% - 76px),
+        #000 calc(50% - 60px), #000 calc(50% + 60px),
+        transparent calc(50% + 76px), transparent 100%);
+    mask-image: linear-gradient(to right,
+        transparent 0, transparent calc(50% - 76px),
+        #000 calc(50% - 60px), #000 calc(50% + 60px),
+        transparent calc(50% + 76px), transparent 100%);
+}
+
+.partners-track--color .logo{
+    filter: none;
+    opacity: 1;
+}
+
+@keyframes partners-scroll{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .partners-track{
+        animation: none;
+    }
+}

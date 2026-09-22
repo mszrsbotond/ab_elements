@@ -1,0 +1,170 @@
+.hero{
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1440 / 876;
+    /* the ratio alone would make the hero 2093px tall on a 3440px monitor */
+    max-height: 100vh;
+    min-height: 560px;
+}
+
+.hero::before{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../../assets/img/hero-bg-lg.webp');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.hero::after{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.78) 0%,
+        rgba(0, 0, 0, 0.42) 50%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    content: '';
+}
+
+.hero-inner{
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--section-px);
+}
+
+.top-row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-m);
+}
+
+.logo{
+    margin: 0;
+    color: var(--color-on-dark);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+}
+
+.hero-text{
+    margin-top: clamp(2rem, 9vw, 7rem);
+}
+
+.eyebrow{
+    margin: 0 0 var(--space-m) 0;
+    color: var(--color-on-dark-subtle);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+}
+
+.hero-title{
+    margin: 0;
+    color: var(--color-on-dark);
+    font-size: var(--text-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    text-transform: uppercase;
+}
+
+.menu-buttons{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xl);
+    list-style: none;
+    border: 2px solid var(--color-glass-border-strong);
+    border-radius: var(--radius-l);
+    padding: var(--space-s) var(--space-xl);
+    background-color: var(--color-scrim);
+    backdrop-filter: blur(6px);
+}
+
+.menu-buttons a{
+    display: inline-block;
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-m);
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    padding-bottom: 3px;
+    /* hairline rule that wipes in from the left and retracts to the right on exit:
+       the position swap is instant, only the size is animated */
+    background-image: linear-gradient(var(--color-white), var(--color-white));
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: 0 1px;
+    transition: background-size 0.35s var(--ease-out), color 0.35s ease;
+}
+
+.menu-buttons a:hover,
+.menu-buttons a:focus-visible{
+    color: var(--color-on-dark);
+    background-position: 0 100%;
+    background-size: 100% 1px;
+}
+
+.menu-buttons a.cta{
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: var(--radius-s);
+    padding: var(--space-xs) var(--space-l);
+    /* same wipe, scaled up to a full fill in the brand navy */
+    background-image: linear-gradient(var(--color-navy), var(--color-navy));
+    background-position: 100% 0;
+    background-size: 0 100%;
+    transition: background-size 0.4s var(--ease-out), color var(--duration-base) ease;
+}
+
+.menu-buttons a.cta:hover,
+.menu-buttons a.cta:focus-visible{
+    color: var(--color-on-dark);
+    background-position: 0 0;
+    background-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .menu-buttons a{
+        transition-duration: 0.01ms;
+    }
+}
+
+@media (max-width: 640px){
+    .menu-buttons{
+        gap: var(--space-s);
+        padding: var(--space-xs) var(--space-m);
+    }
+
+    .menu-buttons a{
+        font-size: var(--text-s);
+    }
+}
+
+/* The background files are 1280, 2560 and 3840px wide. Each breakpoint is where the
+   viewport starts needing more device pixels than the smaller file holds, and the
+   preload hints in index.html repeat these exact ranges so only one file is fetched. */
+@media (min-width: 900px){
+    .hero::before{
+        background-image: url('../../assets/img/hero-bg-lg.webp');
+    }
+}
+
+@media (min-width: 2561px){
+    .hero::before{
+        background-image: url('../../assets/img/hero-bg-xl.webp');
+    }
+}

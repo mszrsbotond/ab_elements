@@ -1,0 +1,256 @@
+.contact{
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.contact::before{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../../assets/img/hero-bg-lg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.contact::after{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.6) 45%,
+        rgba(0, 0, 0, 0.45) 100%
+    );
+    content: '';
+}
+
+.contact-inner{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4xl);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: var(--section-py) var(--section-px);
+}
+
+.contact-text{
+    flex: 1 1 420px;
+    align-self: flex-start;
+    margin-top: clamp(0rem, 3vw, 3rem);
+}
+
+.contact-eyebrow{
+    margin-bottom: var(--space-m);
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+}
+
+.contact-title{
+    max-width: 9ch;
+    color: var(--color-on-dark);
+    font-size: var(--text-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+}
+
+.contact-lead{
+    max-width: 30rem;
+    margin-top: var(--space-2xl);
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+}
+
+.contact-form{
+    flex: 0 1 560px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    padding: clamp(2rem, 3vw, 2.75rem);
+    background-color: var(--color-glass-bg);
+    border: 2px solid var(--color-glass-border);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(14px);
+}
+
+.contact-form-title{
+    margin-bottom: var(--space-xs);
+    color: var(--color-on-dark);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+}
+
+.contact-field{
+    width: 100%;
+    padding: var(--space-m) var(--space-xl);
+    background-color: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border-strong);
+    border-radius: var(--radius-s);
+    color: var(--color-on-dark);
+    font-family: inherit;
+    font-size: var(--text-l);
+    outline: none;
+    transition: border-color var(--duration-fast) ease, background-color var(--duration-fast) ease;
+}
+
+.contact-field::placeholder{
+    color: var(--color-on-dark-muted);
+}
+
+.contact-field:focus{
+    background-color: var(--color-glass-bg-strong);
+    border-color: var(--color-glass-border-focus);
+}
+
+.contact-field.is-invalid,
+.contact-field.is-invalid:focus{
+    border-color: var(--color-error);
+}
+
+.contact-group{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.contact-error{
+    padding-left: var(--space-2xs);
+    color: var(--color-error-text);
+    font-size: var(--text-s);
+    line-height: var(--leading-snug);
+}
+
+.service-select{
+    position: relative;
+}
+
+.service-select-trigger{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    text-align: left;
+    cursor: pointer;
+}
+
+.service-select-trigger.is-placeholder{
+    color: var(--color-on-dark-muted);
+}
+
+.service-select-chevron{
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) ease;
+}
+
+.service-select.is-open .service-select-trigger{
+    background-color: var(--color-glass-bg-strong);
+    border-color: var(--color-glass-border-focus);
+}
+
+.service-select.is-open .service-select-chevron{
+    transform: rotate(180deg);
+}
+
+.service-select-list{
+    position: absolute;
+    top: calc(100% + var(--space-xs));
+    right: 0;
+    left: 0;
+    z-index: 20;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: var(--space-2xs);
+    background-color: var(--color-surface-dark);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-s);
+    box-shadow: var(--shadow-dropdown);
+    animation: service-select-in 0.15s ease;
+}
+
+.service-select-option{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding: var(--space-s) var(--space-m);
+    border-radius: var(--radius-xs);
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-l);
+    cursor: pointer;
+}
+
+.service-select-option.is-active{
+    background-color: var(--color-glass-bg-strong);
+    color: var(--color-on-dark);
+}
+
+.service-select-option[aria-selected="true"]{
+    color: var(--color-on-dark);
+    font-weight: var(--weight-semibold);
+}
+
+@keyframes service-select-in{
+    from{
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+.contact-textarea{
+    min-height: 130px;
+    resize: vertical;
+}
+
+.contact-submit{
+    margin-top: var(--space-2xs);
+    padding: var(--space-l);
+    background-color: var(--color-white);
+    border: 0;
+    border-radius: var(--radius-s);
+    color: var(--color-navy);
+    font-family: inherit;
+    font-size: var(--text-l);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease;
+}
+
+.contact-submit:hover{
+    background-color: var(--color-navy-tint);
+}
+
+.contact-note{
+    max-width: 26rem;
+    margin-top: var(--space-s);
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+}
+
+/* The background files are 1280, 2560 and 3840px wide. Each breakpoint is where the
+   viewport starts needing more device pixels than the smaller file holds, and the
+   preload hints in index.html repeat these exact ranges so only one file is fetched. */
+@media (min-width: 900px){
+    .contact::before{
+        background-image: url('../../assets/img/hero-bg-lg.webp');
+    }
+}
+
+@media (min-width: 2561px){
+    .contact::before{
+        background-image: url('../../assets/img/hero-bg-xl.webp');
+    }
+}

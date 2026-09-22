@@ -1,0 +1,17 @@
+/* the counting copy and a copy of the final value share one grid cell, so the
+   box is always as wide as the end result and growing digits never shift the
+   layout next to it */
+.count-up{
+    display: grid;
+    justify-items: start;
+}
+
+.count-up > *{
+    grid-area: 1 / 1;
+}
+
+/* invisible but still measured — and the copy screen readers announce,
+   so assistive tech gets the final number instead of a ticking one */
+.count-up-reserve{
+    opacity: 0;
+}

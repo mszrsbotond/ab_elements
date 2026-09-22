@@ -1,0 +1,145 @@
+.us-cards-section{
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.us-cards-section::before{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../../assets/img/us-cards-bg-sm.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.us-cards-section::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: 
+        linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.82) 0%,
+            rgba(0, 0, 0, 0.55) 45%,
+            rgba(0, 0, 0, 0.15) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.82) 0%,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0.15) 100%
+        );
+    content: '';
+}
+.us-cards-inner{
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-3xl);
+    padding: var(--section-py) var(--section-px);
+}
+
+
+
+.us-cards-eyebrow{
+    margin: 0 0 var(--space-m) 0;
+    color: var(--color-on-dark-subtle);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+}
+
+.us-cards-title{
+    margin: 0;
+    color: var(--color-on-dark);
+    font-size: var(--text-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    margin-top: var(--space-4xl);
+}
+
+.us-cards{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-2xl);
+    margin-left: var(--space-7xl);
+    margin-right: var(--space-7xl);
+}
+
+.us-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-3xl);
+    min-height: 30vh;
+    min-width: 0;                 /* ← ez kényszeríti ki az egyenlő szélességet */
+    padding: var(--space-2xl);
+    background-color: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border-soft);
+    border-radius: var(--radius-m);
+    backdrop-filter: blur(8px);
+    transition: scale 0.2s ease, border 0.2s ease;
+}
+
+.us-card:hover{
+    scale: 1.1;
+    border: 1px solid var(--color-on-dark)
+}
+
+.us-card-icon{
+    width: 5rem;
+    height: 5rem;
+    color: var(--color-on-dark);
+}
+
+.us-card-label{
+    color: var(--color-on-dark);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    overflow-wrap:normal;     /* ← hosszú szavak tördelése, ne feszítsék a kártyát */
+}
+
+
+@media (max-width: 900px){
+    .us-cards{
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px){
+    .us-cards{
+        grid-template-columns: 1fr;
+    }
+
+    .us-card{
+        min-height: unset;
+    }
+}
+
+/* The background files are 1280, 2560 and 3840px wide. Each breakpoint is where the
+   viewport starts needing more device pixels than the smaller file holds, and the
+   preload hints in index.html repeat these exact ranges so only one file is fetched. */
+@media (min-width: 900px){
+    .us-cards-section::before{
+        background-image: url('../../assets/img/us-cards-bg-lg.webp');
+    }
+}
+
+@media (min-width: 2561px){
+    .us-cards-section::before{
+        background-image: url('../../assets/img/us-cards-bg-xl.webp');
+    }
+}

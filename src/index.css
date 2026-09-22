@@ -1,0 +1,176 @@
+@font-face {
+	font-family: 'Bricolage Grotesque';
+	src: url('./assets/BricolageGrotesque-Variable.woff2') format('woff2');
+	font-weight: 200 800;
+	/* the wdth axis in the font actually tops out at 100% */
+	font-stretch: 75% 100%;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: 'Bricolage Grotesque', sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+:root {
+	/* ---------- Type scale ----------
+	   One step per hierarchy level: anything at the same level uses the same token. */
+	--text-display: clamp(3rem, 5.5vw, 6.5rem);   /* full-bleed hero titles */
+	--text-5xl: clamp(2.5rem, 5vw, 4rem);         /* section titles */
+	--text-4xl: clamp(2.5rem, 4.5vw, 3.5rem);     /* stat numbers */
+	--text-3xl: clamp(1.6rem, 2.4vw, 2.5rem);     /* card headings */
+	--text-2xl: clamp(1.4rem, 1.8vw, 1.8rem);     /* sub-section + panel headings */
+	--text-xl: clamp(1.15rem, 1.4vw, 1.35rem);    /* lead paragraphs */
+	--text-l: 1.05rem;                            /* prominent body, links, inputs */
+	--text-m: 1rem;                               /* body */
+	--text-s: 0.9rem;                             /* captions, errors */
+	--text-xs: 0.8rem;                            /* fine print */
+	--text-eyebrow: clamp(0.7rem, 1vw, 0.85rem);  /* uppercase kickers */
+	--text-numeral: clamp(4rem, 6vw, 6.5rem);     /* decorative card numbers */
+
+	--weight-medium: 500;
+	--weight-semibold: 600;
+	--weight-bold: 700;
+	--weight-extrabold: 800;
+
+	--leading-none: 1;
+	--leading-tight: 1.15;
+	--leading-snug: 1.3;
+	--leading-normal: 1.5;
+	--leading-relaxed: 1.7;
+
+	--tracking-tight: -0.02em;
+	--tracking-wide: 2px;
+	--tracking-wider: 3px;
+
+	/* ---------- Color ---------- */
+	--color-navy: #0a1550;        /* brand */
+	--color-navy-dark: #101a33;   /* dark surfaces + headings on light */
+	--color-navy-tint: #e8e9f3;
+	--color-surface-dark: #161a24;
+	--color-bg: #f7f7f7;
+	--color-white: #fff;
+	--color-black: #000;
+	--color-black-soft: #111;
+
+	--color-text: #555;           /* body on light */
+	--color-text-subtle: #6b6b6b;
+	--color-text-faint: #8a8a8a;
+	--color-numeral: #d9d9d9;
+	--color-numeral-hover: #cfd0ea;
+
+	--color-error: #ff8a8a;
+	--color-error-text: #ff9d9d;
+
+	/* on dark backgrounds */
+	--color-on-dark: #fff;
+	--color-on-dark-muted: hsla(0, 0%, 100%, 0.85);
+	--color-on-dark-subtle: hsla(0, 0%, 100%, 0.72);
+	--color-on-dark-faint: hsla(0, 0%, 100%, 0.65);
+
+	/* frosted panels over photography */
+	--color-glass-bg: hsla(0, 0%, 100%, 0.08);
+	--color-glass-bg-strong: hsla(0, 0%, 100%, 0.14);
+	--color-glass-border-soft: hsla(0, 0%, 100%, 0.16);
+	--color-glass-border: hsla(0, 0%, 100%, 0.22);
+	--color-glass-border-strong: hsla(0, 0%, 100%, 0.3);
+	--color-glass-border-focus: hsla(0, 0%, 100%, 0.75);
+	--color-scrim: hsla(0, 0%, 0%, 0.4);
+
+	/* ---------- Spacing ---------- */
+	--space-2xs: 0.25rem;
+	--space-xs: 0.5rem;
+	--space-s: 0.75rem;
+	--space-m: 1rem;
+	--space-l: 1.25rem;
+	--space-xl: 1.5rem;
+	--space-2xl: 2rem;
+	--space-3xl: 2.5rem;
+	--space-4xl: 3rem;
+	--space-5xl: 3.5rem;
+	--space-6xl: 4.5rem;
+	--space-7xl: 6rem;
+
+	/* shared section rhythm */
+	--section-py: clamp(3rem, 6vw, 6rem);
+	--section-px: clamp(1.5rem, 4vw, 3rem);
+	/* fixed up to a 1920px viewport, then grows so wide monitors are not a narrow strip */
+	--container-max: clamp(1440px, 75vw, 1920px);
+
+	/* ---------- Radii ---------- */
+	--radius-xs: 8px;
+	--radius-s: 10px;
+	--radius-m: 16px;
+	--radius-l: 20px;
+	--radius-xl: 24px;
+	--radius-2xl: 28px;
+
+	/* ---------- Elevation ---------- */
+	--shadow-card: 0 20px 40px rgba(0, 0, 0, 0.12);
+	--shadow-dropdown: 0 20px 40px rgba(0, 0, 0, 0.45);
+	--shadow-focus: 0 0 0 2px var(--color-navy), 0 20px 40px rgba(10, 21, 80, 0.15);
+
+	/* ---------- Motion ---------- */
+	--duration-fast: 0.2s;
+	--duration-base: 0.3s;
+	--duration-slow: 0.6s;
+	--ease-out: cubic-bezier(0.22, 0.7, 0.25, 1);
+}
+
+html {
+	overflow-x: hidden;
+}
+
+img {
+	max-width: 100%;
+}

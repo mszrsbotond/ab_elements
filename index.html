@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="font" type="font/woff2" href="/src/assets/BricolageGrotesque-Variable.woff2" crossorigin />
+    <!-- the hero background is a CSS pseudo-element, so it is discovered late; preload it as the LCP image -->
+    <link rel="preload" as="image" href="/src/assets/img/hero-bg-sm.webp" media="(max-width: 899px)" />
+    <link rel="preload" as="image" href="/src/assets/img/hero-bg-lg.webp" media="(min-width: 900px) and (max-width: 2560px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/src/assets/img/hero-bg-xl.webp" media="(min-width: 2561px)" fetchpriority="high" />
+    <title>my-app</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

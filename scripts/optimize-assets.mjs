@@ -32,13 +32,13 @@ const TARGETS = {
     'milling-machine-drills-holes-metal-part-cnc-metalworking-with-coolant-liquid-industrial.jpg':
         { name: 'us-cards-bg', box: [1280, 720], quality: BACKGROUND_QUALITY, variants: BREAKPOINTS },
 
-    // .service-img: ~310x280 inside a half-width card of the 1440px container
-    'cnc-miling.jpg': { name: 'cnc-milling', box: [340, 300] },
-    'cnc-turning.jpg': { name: 'cnc-turning', box: [340, 300] },
-    'turning.jpg': { name: 'turning', box: [340, 300] },
-    'edm.jpg': { name: 'edm', box: [340, 300] },
-    'heat-treatment.jpg': { name: 'heat-treatment', box: [340, 300] },
-    'welding.jpg': { name: 'welding', box: [340, 300] },
+    // .service-img: ~466x320 inside a half-width card at the widest container (2200px)
+    'cnc-miling.jpg': { name: 'cnc-milling', box: [360, 320] },
+    'cnc-turning.jpg': { name: 'cnc-turning', box: [360, 320] },
+    'turning.jpg': { name: 'turning', box: [360, 320] },
+    'edm.jpg': { name: 'edm', box: [360, 320] },
+    'heat-treatment.jpg': { name: 'heat-treatment', box: [360, 320] },
+    'welding.jpg': { name: 'welding', box: [360, 320] },
 
     // .industry-img: card is clamp(200px, 17vw, 340px) at aspect 343/500
     'agriculture.jpg': { name: 'agriculture', box: [340, 500] },

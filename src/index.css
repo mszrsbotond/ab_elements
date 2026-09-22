@@ -144,8 +144,9 @@ table {
 	/* shared section rhythm */
 	--section-py: clamp(3rem, 6vw, 6rem);
 	--section-px: clamp(1.5rem, 4vw, 3rem);
-	/* fixed up to a 1920px viewport, then grows so wide monitors are not a narrow strip */
-	--container-max: clamp(1440px, 75vw, 1920px);
+	/* Only a ceiling for very wide screens. Below it the content tracks the viewport
+	   and --section-px alone sets the gutter, which is how the 1440px design reads. */
+	--container-max: 2200px;
 
 	/* ---------- Radii ---------- */
 	--radius-xs: 8px;

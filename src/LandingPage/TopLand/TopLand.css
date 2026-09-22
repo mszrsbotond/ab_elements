@@ -1,9 +1,10 @@
 .hero{
     position: relative;
     overflow: hidden;
-    aspect-ratio: 1440 / 876;
-    /* the ratio alone would make the hero 2093px tall on a 3440px monitor */
-    max-height: 100vh;
+    /* 1440x876 in the design. Expressed as a height rather than aspect-ratio
+       because aspect-ratio plus max-height shrinks the width to keep the ratio,
+       which left a blank strip beside the hero on a wide monitor. */
+    height: min(60.833vw, 100vh);
     min-height: 560px;
 }
 

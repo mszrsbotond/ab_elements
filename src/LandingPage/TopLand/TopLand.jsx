@@ -2,13 +2,17 @@ import './TopLand.css'
 
 import { sections, scrollToSection } from '../sections'
 
+import logo from '../../assets/ABElementsMark.svg'
+
 export default function TopLand(){
 
     return(
         <div className="hero">
             <div className="hero-inner">
                 <div className="top-row">
-                    <h1 className="logo">Logó</h1>
+                    <h1 className="logo">
+                        <img src={logo} alt="AB Elements" className="logo-img" />
+                    </h1>
                     <ul className="menu-buttons">
                         {sections.map(({ label, id }, i) => (
                             <li key={id}>

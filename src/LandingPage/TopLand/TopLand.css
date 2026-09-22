@@ -53,11 +53,15 @@
 
 .logo{
     margin: 0;
-    color: var(--color-on-dark);
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-extrabold);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
+    line-height: 0;
+}
+
+.logo-img{
+    display: block;
+    width: auto;
+    height: clamp(2.5rem, 3.5vw, 3.5rem);
+    /* the mark is near-black and the header sits on a dark photo: flatten it to white */
+    filter: brightness(0) invert(1);
 }
 
 .hero-text{

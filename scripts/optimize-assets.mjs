@@ -15,6 +15,11 @@ const OUT_DIR = 'src/assets/img'
 const FONT_SOURCE = join(SOURCE_DIR, 'BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf')
 const FONT_OUT = 'src/assets/BricolageGrotesque-Variable.woff2'
 
+const LOGO_SOURCE = join(SOURCE_DIR, 'ABElementsLogo.svg')
+const LOGO_OUT = 'src/assets/ABElementsMark.svg'
+// the painted bounds of the bare mark, measured off a 2x raster of the source
+const MARK_VIEWBOX = '143 96 1161 575'
+
 // quality per role: backgrounds sit under dark overlays and hide artefacts, cards do not
 const BACKGROUND_QUALITY = 72
 const PHOTO_QUALITY = 80
@@ -69,6 +74,30 @@ const charset = () => {
     return range(0x20, 0xff) + range(0x100, 0x17f) + '\u2013\u2014\u2018\u2019\u201c\u201d\u2022\u2026\u20ac\u2122\u00b0\u00d7\u00f7'
 }
 
+// The header shows the bare mark. Two things come out:
+//  - the wordmark is live <text> in Gothic720PFL, a font nobody else has, so it falls
+//    back and breaks apart; it is also illegible at the 40-56px the header gives it.
+//  - the masked radial gradient painting the metallic sheen turns into a dark blotch
+//    once the CSS filter flattens the mark to white, so it earns nothing here.
+async function buildLogo(){
+    const full = await readFile(LOGO_SOURCE, 'utf8')
+    let mark = full.replace(/<text[\s\S]*?<\/text>\s*/, '')
+
+    // anchor on the <mask> element itself: the name also appears up in the <style> block
+    const sheen = mark.indexOf('<mask')
+    if (sheen === -1) throw new Error('the sheen overlay is not where this expects it')
+    const group = mark.lastIndexOf('<g>', sheen)
+    if (group === -1) throw new Error('no group wraps the sheen overlay')
+    mark = mark.slice(0, group).trimEnd() + '\n</svg>\n'
+
+    mark = mark.replace(/viewBox="[^"]*"/, `viewBox="${MARK_VIEWBOX}"`)
+    // the <style> block keeps the now-unused rules that named these, so check the elements
+    for (const gone of ['<text', '<mask', '<filter']) if (mark.includes(gone)) throw new Error(`${gone} survived the logo trim`)
+    if (!mark.includes('#14387F')) throw new Error('the brand blue is gone from the mark')
+    await writeFile(LOGO_OUT, mark)
+    console.log(`logo${''.padEnd(30)} ${kb(full.length).padStart(9)}  ->  mark only ${kb(mark.length)}`)
+}
+
 async function buildFont(){
     const ttf = await readFile(FONT_SOURCE)
     const woff2 = await subsetFont(ttf, charset(), { targetFormat: 'woff2' })
@@ -104,6 +133,7 @@ async function main(){
     if (unknown.length) console.log(`\nnot referenced by the site, left untouched: ${unknown.join(', ')}`)
 
     await buildFont()
+    await buildLogo()
 }
 
 main()

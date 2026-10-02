@@ -104,3 +104,35 @@
         animation: none;
     }
 }
+
+@media (max-width: 767px){
+    .partners{
+        padding-top: var(--section-py);
+        padding-bottom: var(--space-xl);
+    }
+
+    .partners-title{
+        font-size: clamp(1.5rem, 6.4vw, 2rem);
+    }
+
+    .partners-subtitle{
+        max-width: 30ch;
+        margin-inline: auto;
+        font-size: var(--text-xs);
+        line-height: var(--leading-snug);
+    }
+
+    .partners-marquee{
+        height: 30px;
+    }
+
+    .partners-track{
+        gap: var(--space-3xl);
+        animation-duration: 22s;
+    }
+
+    .logo-wrap{
+        width: 70px;
+        height: 30px;
+    }
+}

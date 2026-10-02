@@ -93,3 +93,49 @@
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+@media (max-width: 767px){
+    .manufacturing-title{
+        margin-bottom: var(--space-xl);
+    }
+
+    .manufacturing-grid{
+        gap: var(--space-s);
+    }
+
+    /* the card collapses to one compact row: number, title, thumbnail */
+    .service-card{
+        grid-template-columns: minmax(0, 1fr) 5.75rem;
+        align-items: center;
+        gap: var(--space-s);
+        min-height: 0;
+        padding: var(--space-2xs);
+    }
+
+    .service-content{
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-m);
+        padding: var(--space-s) 0 var(--space-s) var(--space-m);
+    }
+
+    .service-number{
+        flex-shrink: 0;
+        font-size: 1.65rem;
+    }
+
+    .service-title{
+        margin-top: 0;
+        font-size: var(--text-l);
+        font-weight: var(--weight-semibold);
+    }
+
+    /* no room for the blurb at this height; it stays in the wider layouts */
+    .service-text{
+        display: none;
+    }
+
+    .service-img{
+        min-height: 3.25rem;
+    }
+}

@@ -142,3 +142,40 @@
         translate: calc(var(--card-w) * -0.6) 0;
     }
 }
+
+@media (max-width: 767px){
+    /* The fan becomes a flat filmstrip: every card the same size on one
+       baseline, the current one flush with the left gutter and the rest
+       running off the right edge. Shifting the stage by half its own width
+       minus half a card moves the centred active card onto that gutter. */
+    .industries-stage{
+        --card-w: 42vw;
+        --card-gap: var(--space-s);
+        height: calc(var(--card-w) * 0.75);
+        margin-top: var(--space-xl);
+        transform: translateX(calc(var(--card-w) / 2 - 50%));
+    }
+
+    .industry-card{
+        aspect-ratio: 4 / 3;
+        margin-top: calc(var(--card-w) * -0.375);
+        border-radius: var(--radius-m);
+        transform: translateX(calc((var(--card-w) + var(--card-gap)) * var(--d)));
+    }
+
+    /* every card reads as a full-colour tile in the phone design */
+    .industry-img{
+        filter: none;
+    }
+
+    .industry-label,
+    .industry-card.is-active .industry-label{
+        right: var(--space-s);
+        bottom: var(--space-s);
+        left: var(--space-s);
+        color: var(--color-on-dark);
+        font-size: var(--text-s);
+        font-weight: var(--weight-semibold);
+        text-align: left;
+    }
+}

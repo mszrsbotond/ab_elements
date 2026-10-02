@@ -175,3 +175,25 @@ html {
 img {
 	max-width: 100%;
 }
+
+/* ---------------------------------------------------------------
+   Phone (≤767px). Tablet and up keep the tokens above untouched.
+   The vw-based clamps already shrink, but their floors were tuned
+   for a 1440px design and stay too large on a 390px screen. */
+@media (max-width: 767px){
+	:root{
+		--text-display: clamp(1.75rem, 8vw, 2.4rem);
+		--text-5xl: clamp(1.5rem, 6.8vw, 2.1rem);
+		--text-4xl: clamp(1.75rem, 8vw, 2.4rem);
+		--text-3xl: clamp(1.25rem, 5vw, 1.6rem);
+		--text-2xl: clamp(1.05rem, 4.4vw, 1.35rem);
+		--text-xl: clamp(0.95rem, 3.8vw, 1.1rem);
+		--text-l: 1rem;
+		--text-m: 0.95rem;
+		--text-s: 0.85rem;
+		--text-numeral: clamp(2rem, 9vw, 2.75rem);
+
+		--section-py: clamp(2.25rem, 8vw, 3rem);
+		--section-px: 1rem;
+	}
+}

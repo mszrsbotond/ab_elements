@@ -148,17 +148,6 @@
     }
 }
 
-@media (max-width: 640px){
-    .menu-buttons{
-        gap: var(--space-s);
-        padding: var(--space-xs) var(--space-m);
-    }
-
-    .menu-buttons a{
-        font-size: var(--text-s);
-    }
-}
-
 /* The background files are 1280, 2560 and 3840px wide. Each breakpoint is where the
    viewport starts needing more device pixels than the smaller file holds, and the
    preload hints in index.html repeat these exact ranges so only one file is fetched. */
@@ -171,5 +160,126 @@
 @media (min-width: 2561px){
     .hero::before{
         background-image: url('../../assets/img/hero-bg-xl.webp');
+    }
+}
+
+/* ---------------------------------------------------------------
+   Phone-only chrome: the hamburger and the hero CTA do not exist in
+   the tablet/desktop layout, so they stay hidden until the phone
+   breakpoint turns them on. */
+.menu-toggle{
+    display: none;
+    padding: var(--space-2xs);
+    border: 0;
+    background: none;
+    color: var(--color-on-dark);
+    line-height: 0;
+    cursor: pointer;
+}
+
+.hero-cta{
+    display: none;
+    width: fit-content;
+    padding: var(--space-s) var(--space-2xl);
+    background-color: var(--color-white);
+    border-radius: var(--radius-s);
+    color: var(--color-black);
+    font-size: var(--text-m);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+}
+
+@media (max-width: 767px){
+    .hero{
+        height: auto;
+        min-height: 88vh;
+        min-height: 88svh;
+    }
+
+    /* the 1280px file is what index.html preloads at this width */
+    .hero::before{
+        background-image: url('../../assets/img/hero-bg-sm.webp');
+        background-size: cover;
+    }
+
+    /* a left-to-right scrim does nothing on a narrow screen: darken top
+       and bottom instead, where the logo row and the hero text sit */
+    .hero::after{
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(0, 0, 0, 0.3) 35%,
+            rgba(0, 0, 0, 0.75) 100%
+        );
+    }
+
+    .hero-inner{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 88vh;
+        min-height: 88svh;
+        padding: var(--space-l) var(--section-px) var(--space-4xl);
+    }
+
+    .top-row{
+        position: relative;
+        flex-wrap: nowrap;
+    }
+
+    .logo-img{
+        height: 2.25rem;
+    }
+
+    .menu-toggle{
+        display: inline-flex;
+    }
+
+    /* the link row becomes a panel dropped under the logo bar */
+    .menu-buttons{
+        position: absolute;
+        top: calc(100% + var(--space-m));
+        right: 0;
+        left: 0;
+        z-index: 5;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: var(--space-2xs);
+        padding: var(--space-s);
+        border-radius: var(--radius-m);
+        background-color: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(12px);
+    }
+
+    .menu-buttons[data-open="false"]{
+        display: none;
+    }
+
+    .menu-buttons a{
+        display: block;
+        padding: var(--space-s) var(--space-m);
+        font-size: var(--text-l);
+        /* the desktop underline wipe reads as a stray line in a stacked panel */
+        background-image: none;
+    }
+
+    .menu-buttons a.cta{
+        text-align: center;
+        background-image: none;
+    }
+
+    /* pins the headline to the bottom of the hero, as in the design */
+    .hero-text{
+        margin-top: auto;
+    }
+
+    .hero-title{
+        font-size: clamp(1.9rem, 8.8vw, 2.6rem);
+    }
+
+    .hero-cta{
+        display: inline-block;
+        margin-top: var(--space-2xl);
     }
 }

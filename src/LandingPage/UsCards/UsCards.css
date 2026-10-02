@@ -119,16 +119,6 @@
     }
 }
 
-@media (max-width: 480px){
-    .us-cards{
-        grid-template-columns: 1fr;
-    }
-
-    .us-card{
-        min-height: unset;
-    }
-}
-
 /* The background files are 1280, 2560 and 3840px wide. Each breakpoint is where the
    viewport starts needing more device pixels than the smaller file holds, and the
    preload hints in index.html repeat these exact ranges so only one file is fetched. */
@@ -141,5 +131,70 @@
 @media (min-width: 2561px){
     .us-cards-section::before{
         background-image: url('../../assets/img/us-cards-bg-xl.webp');
+    }
+}
+
+@media (max-width: 767px){
+    .us-cards-section::after{
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.78) 0%,
+            rgba(0, 0, 0, 0.62) 45%,
+            rgba(0, 0, 0, 0.78) 100%
+        );
+    }
+
+    .us-cards-inner{
+        justify-content: center;
+        gap: var(--space-3xl);
+    }
+
+    .us-cards-text{
+        text-align: center;
+    }
+
+    /* the eyebrow repeats the heading verbatim; the phone design drops it */
+    .us-cards-eyebrow{
+        display: none;
+    }
+
+    .us-cards-title{
+        margin-top: 0;
+    }
+
+    .us-cards{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-m);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .us-card{
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-m);
+        min-height: 9.5rem;
+        padding: var(--space-l) var(--space-s);
+        text-align: center;
+    }
+
+    /* an odd final card would otherwise sit alone against the left edge */
+    .us-card:last-child:nth-child(odd){
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc(50% - var(--space-m) / 2);
+    }
+
+    .us-card:hover{
+        scale: 1;
+    }
+
+    .us-card-icon{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .us-card-label{
+        font-size: var(--text-s);
     }
 }

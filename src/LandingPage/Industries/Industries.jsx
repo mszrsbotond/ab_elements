@@ -123,7 +123,7 @@ export default function Industries(){
                         <div
                             key={`leaving-${step}`}
                             className={`industry-card ${dir > 0 ? 'leave-left' : 'leave-right'}`}
-                            style={{ '--k': -dir * slot.k, '--y': slot.y, '--s': slot.s, zIndex: 0 }}
+                            style={{ '--k': -dir * slot.k, '--d': -dir * half, '--y': slot.y, '--s': slot.s, zIndex: 0 }}
                             aria-hidden="true"
                         >
                             <img {...industries[i].image} alt="" draggable={false} className="industry-img" loading="lazy" decoding="async" />
@@ -152,6 +152,9 @@ export default function Industries(){
                             className={className}
                             style={{
                                 '--k': Math.sign(d) * slot.k,
+                                // signed slot distance: the phone layout lays the cards out
+                                // as an evenly spaced row instead of the stacked fan
+                                '--d': d,
                                 '--y': slot.y,
                                 '--s': slot.s,
                                 zIndex: 10 - Math.abs(d),

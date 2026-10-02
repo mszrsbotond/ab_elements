@@ -152,3 +152,90 @@
     }
 
 }
+
+@media (max-width: 767px){
+    /* the phone design leads with the partner logos and stacks the band
+       to its content instead of filling a viewport */
+    .about-band{
+        min-height: 0;
+    }
+
+    .partners{
+        order: 1;
+    }
+
+    .about{
+        order: 2;
+        flex: 0 0 auto;
+        padding-top: var(--space-3xl);
+        padding-bottom: var(--section-py);
+    }
+
+    .about-title{
+        margin-bottom: var(--space-xl);
+    }
+
+    /* The design stacks the band as stats → photo → copy, but the stats live
+       inside .about-content > .right-bottom. Flattening both wrappers with
+       display: contents lifts their children into .about-grid so `order` can
+       resequence them without touching the markup the wide layout needs. */
+    .about-grid{
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+    }
+
+    .about-content,
+    .right-bottom{
+        display: contents;
+    }
+
+    .about-stats{
+        order: 1;
+        justify-content: center;
+        gap: var(--space-6xl);
+    }
+
+    .stat{
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-stats .count-up{
+        justify-items: center;
+    }
+
+    .about-media-left{
+        order: 2;
+    }
+
+    .about-img-main{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        object-position: center 60%;
+    }
+
+    .about-badge{
+        right: var(--space-m);
+        bottom: var(--space-m);
+        transform: none;
+        gap: 0;
+        padding: var(--space-s) var(--space-l);
+    }
+
+    .about-badge-label{
+        font-size: var(--text-xs);
+    }
+
+    .about-text{
+        order: 3;
+        font-size: var(--text-m);
+        line-height: var(--leading-normal);
+    }
+
+    /* not part of the phone design */
+    .about-img-secondary{
+        display: none;
+    }
+}

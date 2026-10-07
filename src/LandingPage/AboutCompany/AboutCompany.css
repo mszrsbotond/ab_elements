@@ -175,8 +175,8 @@
         margin-bottom: var(--space-xl);
     }
 
-    /* The design stacks the band as stats → photo → copy, but the stats live
-       inside .about-content > .right-bottom. Flattening both wrappers with
+    /* The band stacks as photo → stats → copy, but the stats live inside
+       .about-content > .right-bottom. Flattening both wrappers with
        display: contents lifts their children into .about-grid so `order` can
        resequence them without touching the markup the wide layout needs. */
     .about-grid{
@@ -191,7 +191,7 @@
     }
 
     .about-stats{
-        order: 1;
+        order: 2;
         justify-content: center;
         gap: var(--space-6xl);
     }
@@ -206,7 +206,7 @@
     }
 
     .about-media-left{
-        order: 2;
+        order: 1;
     }
 
     .about-img-main{

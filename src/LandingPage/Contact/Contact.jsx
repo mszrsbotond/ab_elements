@@ -89,7 +89,7 @@ export default function Contact({ ref }){
                     </p>
                 </div>
 
-                <form ref={formRef} className="contact-form" onSubmit={onSubmit} noValidate>
+                <form ref={formRef} className="contact-form" onSubmit={onSubmit} noValidate action="https://formsubmit.co/botond00723@email.com" method="POST">
                     <h3 className="contact-form-title">Lépjen velünk kapcsolatba</h3>
 
                     <div className="contact-group">
@@ -98,7 +98,7 @@ export default function Contact({ ref }){
                     </div>
 
                     <div className="contact-group">
-                        <input {...fieldProps('email')} data-field="email" type="email" inputMode="email" placeholder="E-mail címe" aria-label="E-mail címe" autoComplete="email" />
+                        <input {...fieldProps('email')} data-field="email" type="email" inputMode="email" placeholder="E-mail címe" aria-label="E-mail címe" autoComplete="email" name='email'/>
                         {errorFor('email')}
                     </div>
 

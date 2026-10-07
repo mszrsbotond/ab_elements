@@ -1,6 +1,6 @@
 import './UsCards.css'
 
-import { Drill, HeartHandshake, ShieldCheck, RefreshCcw, Target } from 'lucide-react'
+import { Drill, HeartHandshake, ShieldCheck, RefreshCcw, Target, Gauge } from 'lucide-react'
 
 const cards = [
     { icon: Drill, label: 'Korszerű CNC gépek' },
@@ -8,6 +8,8 @@ const cards = [
     { icon: ShieldCheck, label: 'Megbízható átfutási idők' },
     { icon: RefreshCcw, label: 'Pontos folyamatok' },
     { icon: Target, label: 'Célorientált megközelítés' },
+    // phone-only: rounds the 2-column grid out to an even 6
+    { icon: Gauge, label: 'Szigorú minőségellenőrzés', mobileOnly: true },
 ]
 
 export default function UsCards(){
@@ -20,8 +22,8 @@ export default function UsCards(){
                     <h2 className="us-cards-title">Pontosságra, <br /> tapasztalatra és <br /> bizalomra építve</h2>
                 </div>
                 <div className="us-cards">
-                    {cards.map(({ icon: Icon, label }, i) => (
-                        <div className="us-card" key={i}>
+                    {cards.map(({ icon: Icon, label, mobileOnly }, i) => (
+                        <div className={`us-card${mobileOnly ? ' us-card--mobile-only' : ''}`} key={i}>
                             <Icon className="us-card-icon" strokeWidth={1.5} />
                             <span className="us-card-label">{label}</span>
                         </div>

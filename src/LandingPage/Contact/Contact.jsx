@@ -59,7 +59,6 @@ export default function Contact({ ref }){
     })
 
     const onSubmit = (e) => {
-        e.preventDefault()
         const nextErrors = Object.fromEntries(
             Object.keys(validators).map(field => [field, validators[field](values[field])])
         )
@@ -67,6 +66,8 @@ export default function Contact({ ref }){
 
         const firstInvalid = Object.keys(nextErrors).find(field => nextErrors[field])
         if (firstInvalid){
+            // only block the native submit to FormSubmit when something is invalid
+            e.preventDefault()
             e.currentTarget
                 .querySelector(`[data-field="${firstInvalid}"], [data-field-wrapper="${firstInvalid}"] [role="combobox"]`)
                 ?.focus()
@@ -89,7 +90,7 @@ export default function Contact({ ref }){
                     </p>
                 </div>
 
-                <form ref={formRef} className="contact-form" onSubmit={onSubmit} noValidate action="https://formsubmit.co/botond00723@email.com" method="POST">
+                <form ref={formRef} className="contact-form" onSubmit={onSubmit} noValidate action="https://formsubmit.co/botond00723@gmail.com" method="POST">
                     <h3 className="contact-form-title">Lépjen velünk kapcsolatba</h3>
 
                     <div className="contact-group">

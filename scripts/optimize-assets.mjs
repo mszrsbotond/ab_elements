@@ -45,6 +45,12 @@ const TARGETS = {
     'heat-treatment.jpg': { name: 'heat-treatment', box: [360, 320] },
     'welding.jpg': { name: 'welding', box: [360, 320] },
 
+    // .service-machine-img: product cutouts shown whole (object-fit: contain) in a dialog column
+    // ~330px wide; trimmed so the transparent margins around each machine do not differ
+    'Stahlwerk-MTM-200-ST-Test-Avis.webp': { name: 'welder-stahlwerk', box: [330, 200], fit: 'inside', trim: true },
+    'cea-arco-tig-matrix-x-220-acdc-hrx20-vista-laterale-sinistra-aperta-768x768.webp':
+        { name: 'welder-cea', box: [330, 200], fit: 'inside', trim: true },
+
     // .industry-img: card is clamp(200px, 17vw, 340px) at aspect 343/500
     'agriculture.jpg': { name: 'agriculture', box: [340, 500] },
     'industrial.jpg': { name: 'industrial', box: [340, 500] },
@@ -62,11 +68,15 @@ const TARGETS = {
 
 const kb = bytes => `${(bytes / 1024).toFixed(0)} kB`
 
-// 'outside' keeps the aspect ratio while covering the box, which is what object-fit: cover needs
-const render = (input, [w, h], scale, quality) =>
-    sharp(input)
-        .resize(w * scale, h * scale, { fit: 'outside', withoutEnlargement: true })
+// 'outside' keeps the aspect ratio while covering the box, which is what object-fit: cover needs;
+// 'inside' fits the whole image in the box, for object-fit: contain
+const render = async (input, [w, h], scale, quality, fit, trim) => {
+    // trim has to finish before resize, so it gets its own pass
+    const source = trim ? await sharp(input).trim().toBuffer() : input
+    return sharp(source)
+        .resize(w * scale, h * scale, { fit, withoutEnlargement: true })
         .webp({ quality, effort: 6 })
+}
 
 // Latin-1 and Latin Extended-A cover Hungarian; the rest is the typographic punctuation in the copy
 const charset = () => {
@@ -110,11 +120,11 @@ async function main(){
     await mkdir(OUT_DIR, { recursive: true })
 
     const present = await readdir(SOURCE_DIR)
-    const unknown = present.filter(f => /\.(jpe?g|png)$/i.test(f) && !TARGETS[f])
+    const unknown = present.filter(f => /\.(jpe?g|png|webp)$/i.test(f) && !TARGETS[f])
     let before = 0
     let after = 0
 
-    for (const [file, { name, box, quality = PHOTO_QUALITY, variants = RETINA }] of Object.entries(TARGETS)){
+    for (const [file, { name, box, quality = PHOTO_QUALITY, variants = RETINA, fit = 'outside', trim = false }] of Object.entries(TARGETS)){
         const input = join(SOURCE_DIR, file)
         const original = (await stat(input)).size
         before += original
@@ -122,7 +132,7 @@ async function main(){
         const written = []
         for (const { suffix, scale } of variants){
             const out = join(OUT_DIR, `${name}${suffix}.webp`)
-            const { size, width, height } = await render(input, box, scale, quality).toFile(out)
+            const { size, width, height } = await (await render(input, box, scale, quality, fit, trim)).toFile(out)
             after += size
             written.push(`${width}x${height} ${kb(size)}`)
         }

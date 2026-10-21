@@ -1,0 +1,12 @@
+<svg viewBox="10 59.2 770 276" width="278.986" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Átlátszó háttér (nincs rect elem a háttérhez) -->
+
+  <!-- "Invent" szöveg -->
+  <text x="60" y="190" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="190" fill="#000000" font-style="italic" letter-spacing="-4">Invent</text>
+
+  <!-- Felső kék vonal -->
+  <polygon points="42,230 780,230 780,232 32,272" fill="#3b84bc" />
+
+  <!-- Alsó kék vonal -->
+  <polygon points="28,285 780,250 780,252 10,335" fill="#3b84bc" />
+</svg>

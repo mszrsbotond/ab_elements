@@ -22,6 +22,7 @@
 }
 
 .service-card{
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
     gap: var(--space-m);
@@ -36,14 +37,27 @@
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.service-card:focus-visible{
+.service-card:hover,
+.service-card:has(.service-link:focus-visible){
+    border: 1px solid var(--color-navy);
+    box-shadow: var(--shadow-focus);
+}
+
+.service-link{
+    color: inherit;
+    text-decoration: none;
+}
+
+.service-link:focus-visible{
     outline: none;
 }
 
-.service-card:hover,
-.service-card:focus-visible{
-    border: 1px solid var(--color-navy);
-    box-shadow: var(--shadow-focus);
+/* the link covers the whole card, so a click anywhere still requests a quote */
+.service-link::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
 }
 
 .service-content{
@@ -61,7 +75,7 @@
 }
 
 .service-card:hover .service-number,
-.service-card:focus-visible .service-number{
+.service-card:has(.service-link:focus-visible) .service-number{
     color: var(--color-numeral-hover);
 }
 
@@ -80,12 +94,305 @@
     line-height: var(--leading-normal);
 }
 
+/* phone-only fold; above that the wrappers step aside so the blurb sits in the column as before */
+.service-toggle{
+    display: none;
+}
+
+.service-body,
+.service-body-inner{
+    display: contents;
+}
+
+/* sits above the stretched link so it opens the details instead */
+.service-more{
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-l);
+    padding: 0.45rem 0.6rem 0.45rem 1rem;
+    background-color: var(--color-white);
+    border: 1px solid rgba(10, 21, 80, 0.35);
+    border-radius: 999px;
+    color: var(--color-navy);
+    font: inherit;
+    font-size: var(--text-s);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+
+.service-more svg{
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.service-more:hover,
+.service-more:focus-visible{
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: var(--color-white);
+    outline: none;
+}
+
 .service-img{
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: var(--radius-l);
+}
+
+/* ---- details dialog ---- */
+
+html:has(.service-dialog[open]){
+    overflow: hidden;
+}
+
+.service-dialog{
+    /* wide enough that the use lists mostly stay on one or two lines, so everything fits without scrolling */
+    width: min(980px, calc(100vw - 2rem));
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-2xl);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    box-shadow: var(--shadow-card);
+}
+
+.service-dialog[open]{
+    animation: service-dialog-in var(--duration-base) var(--ease-out);
+}
+
+.service-dialog::backdrop{
+    background-color: rgba(10, 21, 80, 0.35);
+    backdrop-filter: blur(4px);
+}
+
+.service-dialog[open]::backdrop{
+    animation: service-backdrop-in var(--duration-base) ease;
+}
+
+.service-dialog-body{
+    display: flex;
+    flex-direction: column;
+    /* scrolling is only the fallback for screens too short to hold it all */
+    max-height: calc(100dvh - 2rem);
+}
+
+.service-dialog-header{
+    position: relative;
+    padding: var(--space-2xl) var(--space-5xl) var(--space-l) var(--space-2xl);
+}
+
+.service-dialog-eyebrow{
+    color: var(--color-text-faint);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.service-dialog-title{
+    margin-top: var(--space-2xs);
+    color: var(--color-navy);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-extrabold);
+    line-height: var(--leading-tight);
+}
+
+.service-dialog-close{
+    position: absolute;
+    top: var(--space-l);
+    right: var(--space-l);
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    background-color: var(--color-navy-tint);
+    border: none;
+    border-radius: 50%;
+    color: var(--color-navy);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.service-dialog-close svg{
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.service-dialog-close:hover,
+.service-dialog-close:focus-visible{
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    outline: none;
+}
+
+.service-dialog-machines{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2xl);
+    padding: 0 var(--space-2xl);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.service-machine{
+    /* photo beside name + summary rather than above them, which keeps the dialog short enough not to scroll */
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    grid-template-areas:
+        "media name"
+        "media summary"
+        "label label"
+        "uses uses";
+    column-gap: var(--space-l);
+    align-content: start;
+    padding-top: var(--space-l);
+    border-top: 1px solid rgba(10, 21, 80, 0.15);
+}
+
+/* cutout product shots: shown whole on a soft panel, both at the same height */
+.service-machine-media{
+    grid-area: media;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 9rem;
+    padding: var(--space-s);
+    background-color: var(--color-bg);
+    border-radius: var(--radius-m);
+}
+
+.service-machine-img{
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.service-machine-name{
+    grid-area: name;
+    align-self: end;
+    color: var(--color-navy-dark);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+}
+
+.service-machine-summary{
+    grid-area: summary;
+    align-self: start;
+    margin-top: var(--space-xs);
+    color: var(--color-text-subtle);
+    font-size: var(--text-s);
+    line-height: var(--leading-normal);
+}
+
+.service-machine-label{
+    grid-area: label;
+    display: block;
+    margin-top: var(--space-l);
+    color: var(--color-text-faint);
+    font-size: var(--text-eyebrow);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.service-machine-uses{
+    grid-area: uses;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin: var(--space-s) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-s);
+    line-height: var(--leading-normal);
+}
+
+.service-machine-uses li{
+    position: relative;
+    padding-left: var(--space-l);
+}
+
+.service-machine-uses li::before{
+    content: '';
+    position: absolute;
+    top: 0.6em;
+    left: 0.15rem;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-navy);
+    border-radius: 50%;
+}
+
+.service-machine-uses strong{
+    color: var(--color-navy-dark);
+    font-weight: var(--weight-semibold);
+}
+
+.service-dialog-footer{
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--space-xl) var(--space-2xl) var(--space-2xl);
+}
+
+.service-dialog-cta{
+    padding: 0.8rem 1.6rem;
+    background-color: var(--color-navy);
+    border: 1px solid var(--color-navy);
+    border-radius: 999px;
+    color: var(--color-white);
+    font: inherit;
+    font-size: var(--text-m);
+    font-weight: var(--weight-semibold);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.service-dialog-cta:hover,
+.service-dialog-cta:focus-visible{
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    outline: none;
+}
+
+@keyframes service-dialog-in{
+    from{
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+}
+
+@keyframes service-backdrop-in{
+    from{
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .service-dialog[open],
+    .service-dialog[open]::backdrop{
+        animation: none;
+    }
 }
 
 @media (max-width: 1100px){
@@ -103,39 +410,152 @@
         gap: var(--space-s);
     }
 
-    /* the card collapses to one compact row: number, title, thumbnail */
+    /* the card collapses to one compact row: number, title, arrow, thumbnail;
+       the arrow folds the blurb open underneath */
     .service-card{
-        grid-template-columns: minmax(0, 1fr) 5.75rem;
+        grid-template-columns: auto minmax(0, 1fr) auto 5.75rem;
+        grid-template-areas:
+            "number title toggle img"
+            "body body body body";
         align-items: center;
-        gap: var(--space-s);
+        column-gap: var(--space-s);
+        row-gap: 0;
         min-height: 0;
         padding: var(--space-2xs);
     }
 
+    /* its children join the card grid directly */
     .service-content{
-        flex-direction: row;
-        align-items: center;
-        gap: var(--space-m);
-        padding: var(--space-s) 0 var(--space-s) var(--space-m);
+        display: contents;
     }
 
     .service-number{
-        flex-shrink: 0;
+        grid-area: number;
+        padding-left: var(--space-m);
         font-size: 1.65rem;
+        /* equal-width digits keep every title starting at the same x */
+        font-variant-numeric: tabular-nums;
     }
 
     .service-title{
+        grid-area: title;
+        min-width: 0;
         margin-top: 0;
+        padding-left: var(--space-xs);
         font-size: var(--text-l);
         font-weight: var(--weight-semibold);
     }
 
-    /* no room for the blurb at this height; it stays in the wider layouts */
-    .service-text{
-        display: none;
+    .service-img{
+        grid-area: img;
+        min-height: 3.25rem;
     }
 
-    .service-img{
-        min-height: 3.25rem;
+    /* sits above the stretched link, like the details button */
+    .service-toggle{
+        grid-area: toggle;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background-color: var(--color-navy-tint);
+        border: none;
+        border-radius: 50%;
+        color: var(--color-navy);
+        cursor: pointer;
+    }
+
+    .service-toggle svg{
+        width: 1.2rem;
+        height: 1.2rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform var(--duration-base) var(--ease-out);
+    }
+
+    .service-card.is-open .service-toggle svg{
+        transform: rotate(180deg);
+    }
+
+    /* 0fr -> 1fr animates the height open without measuring it */
+    .service-body{
+        grid-area: body;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--duration-base) var(--ease-out);
+    }
+
+    .service-card.is-open .service-body{
+        grid-template-rows: 1fr;
+    }
+
+    .service-body-inner{
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+        /* keeps the folded text out of reach of screen readers and the tab order too */
+        visibility: hidden;
+        transition: visibility 0s var(--duration-base);
+    }
+
+    .service-card.is-open .service-body-inner{
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .service-text{
+        margin-top: var(--space-s);
+        padding: 0 var(--space-m);
+        font-size: var(--text-s);
+    }
+
+    /* the last thing in the fold carries the bottom spacing; margin, not padding, so it collapses with the row */
+    .service-text:last-child,
+    .service-more{
+        margin-bottom: var(--space-m);
+    }
+
+    .service-more{
+        margin-top: var(--space-s);
+        margin-left: var(--space-m);
+    }
+
+    .service-dialog{
+        width: calc(100vw - 1.5rem);
+    }
+
+    /* the stacked machines are taller than a phone screen; the list scrolls here */
+    .service-dialog-header{
+        padding: var(--space-xl) var(--space-5xl) var(--space-m) var(--space-xl);
+    }
+
+    .service-dialog-machines{
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-xl);
+        padding: 0 var(--space-xl);
+    }
+
+    .service-machine{
+        grid-template-columns: 6.5rem minmax(0, 1fr);
+        column-gap: var(--space-m);
+    }
+
+    .service-machine-media{
+        height: 6.5rem;
+    }
+
+    .service-dialog-footer{
+        padding: var(--space-l) var(--space-xl) var(--space-xl);
+    }
+
+    .service-dialog-cta{
+        width: 100%;
     }
 }

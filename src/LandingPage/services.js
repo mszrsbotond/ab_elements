@@ -28,8 +28,39 @@ export const services = [
         image: image('heat-treatment'),
     },
     {
-        title: 'Heggesztés',
+        title: 'Hegesztés',
         text: 'Tapasztalt szakembereink különféle hegesztési technológiákkal (pl. TIG, MIG) készítenek precíziós kötéseket fémalkatrészeken, az egyedi darabszámtól a sorozatgyártásig.',
         image: image('welding'),
+        // optional: shown in a dialog behind a "Gépeink" button on the card.
+        // a use written as "Label: text" renders the label in bold
+        details: {
+            title: 'Hegesztő gépparkunk',
+            machines: [
+                {
+                    name: 'Stahlwerk MIG/MAG',
+                    image: image('welder-stahlwerk'),
+                    summary: '200 A-es MIG/MAG és MMA hegesztőgép.',
+                    uses: [
+                        'Acélszerkezetek hegesztése: zártszelvények, csövek, keretek és tartószerkezetek.',
+                        'Lemezhegesztés: vékonyabb és közepes vastagságú acéllemezek összehegesztése.',
+                        'Javítási és karbantartási munkák: gépalkatrészek, konzolok, fémszerkezetek javítása.',
+                        'MMA elektródás hegesztés: szerelési és kültéri munkák megfelelő elektródával.',
+                        'Védőgáz nélküli hegesztés: önvédő porbeles huzallal, megfelelő polaritásbeállítással.',
+                    ],
+                },
+                {
+                    name: 'CEA Matrix AC/DC',
+                    image: image('welder-cea'),
+                    summary: 'Professzionális inverteres TIG AC/DC és MMA hegesztőgép pulzushegesztéssel és cold.TACK funkcióval.',
+                    uses: [
+                        'Alumínium alkatrészek és szerkezetek hegesztése.',
+                        'Rozsdamentes acél termékek, burkolatok és tartályok gyártása.',
+                        'Vékony lemezek és precíziós alkatrészek hegesztése.',
+                        'Acélszerkezetek és gépalkatrészek javítása.',
+                        'Pontozás és varratok készítése minimális hőbevitellel.',
+                    ],
+                },
+            ],
+        },
     },
 ]

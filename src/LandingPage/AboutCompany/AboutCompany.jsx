@@ -20,10 +20,9 @@ export default function AboutCompany(){
                     </div>
                     <div className="about-content">
                         <p className="about-text">
-                            2018-es alapítása óta az AB Elements kiemelt hangsúlyt fektet a kiszolgálásra,
-                            a minőségre, az árazásra és a határidők pontos betartására. Kezdetben abban
-                            voltunk piaci résen, hogy a félvezetőipar rendkívül magas felületminőségi
-                            elvárásainak is megfeleltünk.
+                            A 2018-as alapítás óta az AB Elements Kft. kiemelt hangsúlyt fektet a minőségre, a gyors és rugalmas kiszolgálásra,
+                            valamint a határidők pontos betartására. Legnagyobb versenyelőnyünk a rövid határidejű projektek gyors, precíz és megbízható megvalósítása, az egyedi vevői igényekhez 
+                            való rugalmas alkalmazkodás mellett. Célunk, hogy partnereink számára a legmagasabb minőséget nyújtsuk, kompromisszumok nélkül, még szoros határidők esetén is.
                         </p>
                         <div className="right-bottom">
                             <div className="about-stats">

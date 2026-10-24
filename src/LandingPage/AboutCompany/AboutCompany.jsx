@@ -27,7 +27,7 @@ export default function AboutCompany(){
                         <div className="right-bottom">
                             <div className="about-stats">
                                 <div className="stat">
-                                    <CountUp className="stat-number" value={5} suffix="+" />
+                                    <CountUp className="stat-number" value={8} suffix="+" />
                                     <span className="stat-label">Év tapasztalat</span>
                                 </div>
                                 <div className="stat">

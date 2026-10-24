@@ -6,7 +6,7 @@ import './Contact.css'
 
 import ServiceSelect from './ServiceSelect'
 import { services } from '../services'
-import { company, isPlaceholder } from '../../company'
+import { company } from '../../company'
 import { legalLinks } from '../../legalLinks'
 
 const serviceNames = services.map(service => service.title)
@@ -142,7 +142,6 @@ export default function Contact({ ref }){
                 ) : (
                     <form ref={formRef} className="contact-form" onSubmit={onSubmit} noValidate aria-busy={sending}>
                         <h3 className="contact-form-title">Lépjen velünk kapcsolatba</h3>
-                        <p className="contact-required-note"><span aria-hidden="true">*</span> A csillaggal jelölt mezők kitöltése kötelező.</p>
 
                         <input type="hidden" name="_subject" value="Új árajánlatkérés az AB Elements weboldalról" />
                         <input type="hidden" name="_template" value="table" />
@@ -150,12 +149,12 @@ export default function Contact({ ref }){
                         <input type="text" name="_honey" className="contact-honeypot" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
                         <div className="contact-group">
-                            <input {...fieldProps('name')} data-field="name" type="text" placeholder="Az Ön neve *" aria-label="Az Ön neve" autoComplete="name" />
+                            <input {...fieldProps('name')} data-field="name" type="text" placeholder="Az Ön neve" aria-label="Az Ön neve" autoComplete="name" />
                             {errorFor('name')}
                         </div>
 
                         <div className="contact-group">
-                            <input {...fieldProps('email')} data-field="email" type="email" inputMode="email" placeholder="E-mail címe *" aria-label="E-mail címe" autoComplete="email" />
+                            <input {...fieldProps('email')} data-field="email" type="email" inputMode="email" placeholder="E-mail címe" aria-label="E-mail címe" autoComplete="email" />
                             {errorFor('email')}
                         </div>
 
@@ -164,8 +163,7 @@ export default function Contact({ ref }){
                                 options={serviceNames}
                                 value={values.service}
                                 onChange={v => { setField('service', v); validateField('service', v) }}
-                                placeholder="Gyártási szolgáltatás *"
-                                label="Gyártási szolgáltatás"
+                                placeholder="Gyártási szolgáltatás"
                                 invalid={Boolean(errors.service)}
                                 describedBy={errors.service ? 'contact-service-error' : undefined}
                             />
@@ -174,7 +172,7 @@ export default function Contact({ ref }){
                         </div>
 
                         <div className="contact-group">
-                            <textarea {...fieldProps('message', 'contact-textarea')} data-field="message" placeholder="Üzenet *" aria-label="Üzenet" rows={4} />
+                            <textarea {...fieldProps('message', 'contact-textarea')} data-field="message" placeholder="Üzenet" aria-label="Üzenet" rows={4} />
                             {errorFor('message')}
                         </div>
 
@@ -198,7 +196,7 @@ export default function Contact({ ref }){
                                     Elolvastam és elfogadom az{' '}
                                     <a href={legalLinks.privacy.href} target="_blank" rel="noopener">adatkezelési tájékoztatót</a>,
                                     és hozzájárulok, hogy az AB Elements a megadott adataimat a megkeresés
-                                    megválaszolása céljából kezelje. <span aria-hidden="true">*</span>
+                                    megválaszolása céljából kezelje.
                                 </span>
                             </label>
                             {errorFor('privacy')}
@@ -208,10 +206,8 @@ export default function Contact({ ref }){
                             <div className="contact-alert" role="alert">
                                 <AlertCircle size={20} strokeWidth={2} aria-hidden="true" />
                                 <p>
-                                    Az üzenet küldése nem sikerült. Kérjük, próbálja újra néhány perc múlva
-                                    {isPlaceholder(company.email)
-                                        ? '.'
-                                        : <>, vagy írjon nekünk közvetlenül: <a href={`mailto:${company.email}`}>{company.email}</a>.</>}
+                                    Az üzenet küldése nem sikerült. Kérjük, próbálja újra néhány perc múlva,
+                                    vagy írjon nekünk közvetlenül: <a href={`mailto:${company.email}`}>{company.email}</a>.
                                 </p>
                             </div>
                         )}
@@ -220,6 +216,11 @@ export default function Contact({ ref }){
                             {sending && <LoaderCircle className="contact-spinner" size={20} strokeWidth={2.25} aria-hidden="true" />}
                             {sending ? 'Küldés folyamatban…' : 'Küldés'}
                         </button>
+
+                        <p className="contact-alt">
+                            Vagy keressen minket közvetlenül az{' '}
+                            <a href={`mailto:${company.email}`}>{company.email}</a> e-mail címen.
+                        </p>
 
                         <p className="contact-note">
                             Az AB Elements számára fontos az Ön adatainak védelme. Minden megadott

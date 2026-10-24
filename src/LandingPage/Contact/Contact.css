@@ -258,10 +258,17 @@
     }
 }
 
-.contact-required-note{
-    margin-top: calc(-1 * var(--space-s));
-    color: var(--color-on-dark-subtle);
-    font-size: var(--text-xs);
+.contact-alt{
+    color: var(--color-on-dark-muted);
+    font-size: var(--text-s);
+    line-height: var(--leading-normal);
+    text-align: center;
+}
+
+.contact-alt a{
+    color: var(--color-on-dark);
+    font-weight: var(--weight-semibold);
+    text-underline-offset: 3px;
 }
 
 /* off-screen rather than display:none, which some bots know to skip */

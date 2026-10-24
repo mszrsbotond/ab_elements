@@ -221,11 +221,6 @@ export default function Contact({ ref }){
                             Vagy keressen minket közvetlenül az{' '}
                             <a href={`mailto:${company.email}`}>{company.email}</a> e-mail címen.
                         </p>
-
-                        <p className="contact-note">
-                            Az AB Elements számára fontos az Ön adatainak védelme. Minden megadott
-                            információt bizalmasan, biztonságosan és kizárólag a megkeresés megválaszolására használunk.
-                        </p>
                     </form>
                 )}
             </div>

@@ -52,6 +52,7 @@
 }
 
 .logo{
+    display: block;
     margin: 0;
     line-height: 0;
 }
@@ -164,9 +165,8 @@
 }
 
 /* ---------------------------------------------------------------
-   Phone-only chrome: the hamburger and the hero CTA do not exist in
-   the tablet/desktop layout, so they stay hidden until the phone
-   breakpoint turns them on. */
+   Phone-only chrome: the hamburger does not exist in the tablet/desktop
+   layout, so it stays hidden until the phone breakpoint turns it on. */
 .menu-toggle{
     display: none;
     padding: var(--space-2xs);
@@ -177,16 +177,51 @@
     cursor: pointer;
 }
 
+.hero-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    margin-top: clamp(1.5rem, 3vw, 3rem);
+}
+
 .hero-cta{
-    display: none;
+    display: inline-block;
     width: fit-content;
-    padding: var(--space-s) var(--space-2xl);
-    background-color: var(--color-white);
+    padding: var(--space-m) var(--space-2xl);
+    border: 2px solid var(--color-white);
     border-radius: var(--radius-s);
-    color: var(--color-black);
-    font-size: var(--text-m);
+    color: var(--color-navy);
+    font-size: var(--text-l);
     font-weight: var(--weight-semibold);
     text-decoration: none;
+    /* the same navy wipe as the menu CTA */
+    background-color: var(--color-white);
+    background-image: linear-gradient(var(--color-navy), var(--color-navy));
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+    background-size: 0 100%;
+    transition: background-size 0.4s var(--ease-out), color var(--duration-base) ease, border-color var(--duration-base) ease;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible{
+    border-color: var(--color-navy);
+    color: var(--color-on-dark);
+    background-position: 0 0;
+    background-size: 100% 100%;
+}
+
+.hero-cta.is-secondary{
+    border-color: var(--color-glass-border-focus);
+    background-color: var(--color-scrim);
+    color: var(--color-on-dark);
+    backdrop-filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .hero-cta{
+        transition-duration: 0.01ms;
+    }
 }
 
 @media (max-width: 767px){
@@ -278,8 +313,12 @@
         font-size: clamp(1.9rem, 8.8vw, 2.6rem);
     }
 
-    .hero-cta{
-        display: inline-block;
+    .hero-actions{
         margin-top: var(--space-2xl);
+    }
+
+    .hero-cta{
+        padding: var(--space-s) var(--space-xl);
+        font-size: var(--text-m);
     }
 }

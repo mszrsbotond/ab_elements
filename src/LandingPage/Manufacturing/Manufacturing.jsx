@@ -54,7 +54,7 @@ function ServiceCard({ service, number, onSelectService, onShowDetails }){
                     </div>
                 </div>
             </div>
-            <img {...service.image} alt="" className="service-img" loading="lazy" decoding="async" />
+            <img {...service.image} alt={`${service.title} – AB Elements`} className="service-img" loading="lazy" decoding="async" />
         </article>
     )
 }

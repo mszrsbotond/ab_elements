@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 
 import { Check, ChevronDown } from 'lucide-react'
 
-export default function ServiceSelect({ options, value, onChange, onBlur, placeholder, invalid, describedBy }){
+export default function ServiceSelect({ options, value, onChange, onBlur, placeholder, label = placeholder, invalid, describedBy }){
     const [open, setOpen] = useState(false)
     const [activeIndex, setActiveIndex] = useState(-1)
     const rootRef = useRef(null)
@@ -87,7 +87,8 @@ export default function ServiceSelect({ options, value, onChange, onBlur, placeh
                 aria-activedescendant={open && activeIndex >= 0 ? `${id}-opt-${activeIndex}` : undefined}
                 aria-invalid={invalid || undefined}
                 aria-describedby={describedBy}
-                aria-label={placeholder}
+                aria-label={label}
+                aria-required="true"
                 onClick={() => (open ? setOpen(false) : openList())}
                 onKeyDown={onKeyDown}
                 onBlur={() => { setOpen(false); onBlur?.() }}

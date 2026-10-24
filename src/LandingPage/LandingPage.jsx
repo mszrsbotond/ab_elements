@@ -9,6 +9,8 @@ import Industries from "./Industries/Industries"
 import Contact from "./Contact/Contact"
 import Footer from "./Footer/Footer"
 import useSectionScroll from "./useSectionScroll"
+import CookieBanner from "../CookieBanner/CookieBanner"
+import StructuredData from "../StructuredData"
 
 export default function LandingPage(){
     useSectionScroll()
@@ -37,6 +39,8 @@ export default function LandingPage(){
                 <Contact ref={contactRef} />
             </div>
             <Footer onSelectService={selectService} />
+            <CookieBanner />
+            <StructuredData />
         </>
     )
 }

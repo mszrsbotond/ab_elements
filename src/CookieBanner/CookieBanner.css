@@ -1,0 +1,118 @@
+.cookie-banner{
+    position: fixed;
+    right: var(--space-xl);
+    bottom: var(--space-xl);
+    left: var(--space-xl);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-2xl);
+    background-color: rgba(16, 26, 51, 0.94);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-dropdown);
+    color: var(--color-on-dark-muted);
+    backdrop-filter: blur(12px);
+    animation: cookie-banner-in var(--duration-base) var(--ease-out);
+}
+
+.cookie-banner-icon{
+    flex-shrink: 0;
+    color: var(--color-on-dark);
+}
+
+.cookie-banner-body{
+    flex: 1;
+}
+
+.cookie-banner-title{
+    margin-bottom: var(--space-2xs);
+    color: var(--color-on-dark);
+    font-size: var(--text-l);
+    font-weight: var(--weight-semibold);
+}
+
+.cookie-banner-text{
+    font-size: var(--text-s);
+    line-height: var(--leading-normal);
+}
+
+.cookie-banner-text a{
+    color: var(--color-on-dark);
+    text-underline-offset: 3px;
+}
+
+.cookie-banner-actions{
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-s);
+}
+
+.cookie-banner-btn{
+    padding: var(--space-s) var(--space-xl);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-white);
+    border-radius: var(--radius-s);
+    color: var(--color-navy);
+    font-family: inherit;
+    font-size: var(--text-m);
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+.cookie-banner-btn:hover{
+    background-color: var(--color-navy-tint);
+}
+
+/* both choices carry the same weight, so declining is never the harder button to find */
+.cookie-banner-btn.is-secondary{
+    background-color: transparent;
+    border-color: var(--color-glass-border-focus);
+    color: var(--color-on-dark);
+}
+
+.cookie-banner-btn.is-secondary:hover{
+    background-color: var(--color-glass-bg-strong);
+}
+
+@keyframes cookie-banner-in{
+    from{
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .cookie-banner{
+        animation: none;
+    }
+}
+
+@media (max-width: 767px){
+    .cookie-banner{
+        right: var(--space-s);
+        bottom: var(--space-s);
+        left: var(--space-s);
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-m);
+        padding: var(--space-l);
+    }
+
+    .cookie-banner-icon{
+        display: none;
+    }
+
+    .cookie-banner-actions{
+        flex-direction: column-reverse;
+    }
+
+    .cookie-banner-btn{
+        width: 100%;
+    }
+}

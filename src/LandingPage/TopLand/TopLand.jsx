@@ -23,9 +23,9 @@ export default function TopLand(){
         <div className="hero">
             <div className="hero-inner">
                 <div className="top-row">
-                    <h1 className="logo">
-                        <img src={logo} alt="AB Elements" className="logo-img" />
-                    </h1>
+                    <a href="#home" className="logo" onClick={e => scrollToSection(e, 'home')}>
+                        <img src={logo} alt="AB Elements – kezdőlap" className="logo-img" width="120" height="59" />
+                    </a>
                     <button
                         type="button"
                         className="menu-toggle"
@@ -57,8 +57,11 @@ export default function TopLand(){
                 </div>
                 <div className="hero-text">
                     <p className="eyebrow">Üdvözöljük az AB Elements-nél</p>
-                    <h2 className="hero-title">Gyors és precíz <br /> megoldás minden <br /> gyártási igényre</h2>
-                    <a href="#contact" className="hero-cta" onClick={e => scrollToSection(e, 'contact')}>Kapcsolat</a>
+                    <h1 className="hero-title">Gyors és precíz <br /> megoldás minden <br /> gyártási igényre</h1>
+                    <div className="hero-actions">
+                        <a href="#contact" className="hero-cta" onClick={e => scrollToSection(e, 'contact')}>Árajánlatkérés</a>
+                        <a href="#services" className="hero-cta is-secondary" onClick={e => scrollToSection(e, 'services')}>Szolgáltatásaink</a>
+                    </div>
                 </div>
             </div>
         </div>

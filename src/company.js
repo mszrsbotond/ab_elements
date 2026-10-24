@@ -12,7 +12,7 @@ export const company = {
     registryCourt: '[Fővárosi Törvényszék Cégbírósága]',
     representative: '[ügyvezető neve]',
     phone: '[+36 30 123 4567]',
-    email: '[info@abelements.hu]',
+    email: 'info@abelements.hu',
     linkedin: '[https://www.linkedin.com/company/ab-elements]',
     siteUrl: '[https://www.abelements.hu]',
     hosting: '[tárhelyszolgáltató neve, címe, e-mail címe]',

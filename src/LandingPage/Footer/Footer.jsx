@@ -82,6 +82,7 @@ export default function Footer({ onSelectService }){
                             <dt>Székhely</dt><dd>{company.seat}</dd>
                             <dt>Adószám</dt><dd>{company.taxNumber}</dd>
                             <dt>Cégjegyzékszám</dt><dd>{company.registrationNumber}</dd>
+                            <dt>Cégbíróság</dt><dd>{company.registryCourt}</dd>
                         </dl>
                         <a href={company.linkedin} className="footer-social" target="_blank" rel="noopener noreferrer">
                             <LinkedInIcon />

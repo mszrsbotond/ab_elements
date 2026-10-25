@@ -127,6 +127,13 @@ export function Imprint(){
             <h2>Tárhelyszolgáltató</h2>
             <p>{company.hosting}</p>
 
+            {company.supervisoryAuthority && (
+                <>
+                    <h2>Felügyeleti hatóság</h2>
+                    <p>{company.supervisoryAuthority}</p>
+                </>
+            )}
+
             <h2>Szerzői jog</h2>
             <p>
                 A weboldal tartalma (szövegek, fotók, grafikai elemek, logó) az {company.legalName} vagy a

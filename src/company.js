@@ -16,6 +16,9 @@ export const company = {
     linkedin: '[https://www.linkedin.com/company/ab-elements]',
     siteUrl: '[https://www.abelements.hu]',
     hosting: '[tárhelyszolgáltató neve, címe, e-mail címe]',
+    // only for licensed activities (Ekertv. 4. §): the supervising authority's name and contact;
+    // leave null if no activity needs a licence and the Impresszum leaves the section out
+    supervisoryAuthority: null,
     openingHours: [
         { days: 'Hétfő – Péntek', hours: '[7:00 – 16:00]' },
         { days: 'Szombat – Vasárnap', hours: 'Zárva' },

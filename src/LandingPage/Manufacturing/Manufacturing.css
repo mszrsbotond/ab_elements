@@ -413,7 +413,8 @@ html:has(.service-dialog[open]){
     /* the card collapses to one compact row: number, title, arrow, thumbnail;
        the arrow folds the blurb open underneath */
     .service-card{
-        grid-template-columns: auto minmax(0, 1fr) auto 5.75rem;
+        /* the thumbnail gives way on narrow phones so the title keeps its room */
+        grid-template-columns: auto minmax(0, 1fr) auto clamp(3.5rem, 18vw, 5.75rem);
         grid-template-areas:
             "number title toggle img"
             "body body body body";
@@ -444,6 +445,9 @@ html:has(.service-dialog[open]){
         padding-left: var(--space-xs);
         font-size: var(--text-l);
         font-weight: var(--weight-semibold);
+        /* long compounds like "Hosszesztergálás" would otherwise run under the arrow and the photo */
+        overflow-wrap: anywhere;
+        hyphens: auto;
     }
 
     .service-img{
@@ -557,5 +561,21 @@ html:has(.service-dialog[open]){
 
     .service-dialog-cta{
         width: 100%;
+    }
+}
+
+@media (max-width: 400px){
+    .service-card{
+        column-gap: var(--space-xs);
+    }
+
+    .service-number{
+        padding-left: var(--space-s);
+        font-size: 1.4rem;
+    }
+
+    .service-title{
+        padding-left: 0;
+        font-size: var(--text-m);
     }
 }

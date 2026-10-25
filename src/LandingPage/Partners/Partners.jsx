@@ -47,6 +47,8 @@ const logos = [
 // wide wordmarks get shorter, square/tall marks get taller
 const logoStyle = (ratio) => ({ '--logo-scale': (1 / Math.sqrt(ratio)).toFixed(3) })
 
+// no loading="lazy": the logos sit off to the side of a clipped, moving strip, and phones
+// often never count them as on screen, so they scrolled past as empty gaps
 export default function Partners(){
 
     return(
@@ -57,12 +59,12 @@ export default function Partners(){
                 <div className="partners-track partners-track--gray">
                     {logos.map((logo, i) => (
                         <span key={`a-${i}`} className="logo-wrap">
-                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} loading="lazy" decoding="async" />
+                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} decoding="async" />
                         </span>
                     ))}
                     {logos.map((logo, i) => (
                         <span key={`b-${i}`} className="logo-wrap" aria-hidden="true">
-                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} loading="lazy" decoding="async" />
+                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} decoding="async" />
                         </span>
                     ))}
                 </div>

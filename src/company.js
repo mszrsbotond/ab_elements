@@ -24,7 +24,7 @@ export const company = {
         { days: 'Szombat – Vasárnap', hours: 'Zárva' },
     ],
     // FormSubmit forwards the contact form to this inbox
-    formEndpoint: 'https://formsubmit.co/ajax/botond00723@gmail.com',
+    formEndpoint: 'https://formsubmit.co/ajax/info@abelements.hu',
 }
 
 export const isPlaceholder = value => typeof value === 'string' && value.startsWith('[')

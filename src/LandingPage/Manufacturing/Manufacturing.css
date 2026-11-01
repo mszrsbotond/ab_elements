@@ -450,9 +450,12 @@ html:has(.service-dialog[open]){
         hyphens: auto;
     }
 
+    /* fixed height, not the desktop 100%: Safari resolves that percentage against the whole
+       card, so unfolding the text stretched the thumbnail up and down out of its row */
     .service-img{
         grid-area: img;
-        min-height: 3.25rem;
+        align-self: center;
+        height: 3.25rem;
     }
 
     /* sits above the stretched link, like the details button */

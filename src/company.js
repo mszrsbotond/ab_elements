@@ -4,18 +4,18 @@
 export const company = {
     brand: 'AB Elements',
     legalName: 'AB Elements Kft.',
-    seat: '[irányítószám, település, utca, házszám]',
+    seat: '6000 Kecskemét, Batthyány utca 33. 4. emelet 16.',
     // the plant, if it differs from the registered seat
-    address: '[irányítószám, település, utca, házszám]',
-    taxNumber: '[12345678-1-12]',
-    registrationNumber: '[01-09-123456]',
-    registryCourt: '[Fővárosi Törvényszék Cégbírósága]',
-    representative: '[ügyvezető neve]',
-    phone: '[+36 30 123 4567]',
+    address: '6000 Kecskemét, Batthyány utca 33. 4. emelet 16.',
+    taxNumber: '26569905-2-03',
+    registrationNumber: '03-09-132168',
+    registryCourt: 'Kecskeméti Törvényszék Cégbírósága',
+    representative: 'Kiss Balázs',
+    phone: '+36 70 634 5074 ',
     email: 'info@abelements.hu',
     linkedin: '[https://www.linkedin.com/company/ab-elements]',
     siteUrl: '[https://www.abelements.hu]',
-    hosting: '[tárhelyszolgáltató neve, címe, e-mail címe]',
+    hosting: 'https://www.forpsi.hu',
     // only for licensed activities (Ekertv. 4. §): the supervising authority's name and contact;
     // leave null if no activity needs a licence and the Impresszum leaves the section out
     supervisoryAuthority: null,

@@ -20,7 +20,7 @@ export const company = {
     // leave null if no activity needs a licence and the Impresszum leaves the section out
     supervisoryAuthority: null,
     openingHours: [
-        { days: 'Hétfő – Péntek', hours: '[7:00 – 16:00]' },
+        { days: 'Hétfő – Péntek', hours: '8:00 – 16:00' },
         { days: 'Szombat – Vasárnap', hours: 'Zárva' },
     ],
     // FormSubmit forwards the contact form to this inbox

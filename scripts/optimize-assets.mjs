@@ -110,7 +110,13 @@ async function buildLogo(){
 
 async function buildFont(){
     const ttf = await readFile(FONT_SOURCE)
-    const woff2 = await subsetFont(ttf, charset(), { targetFormat: 'woff2' })
+    const woff2 = await subsetFont(ttf, charset(), {
+        targetFormat: 'woff2',
+        // nothing sets font-stretch, so the width axis is pinned at its 100% default, and the
+        // weights stop at the 400-800 the site uses: 159 kB -> 89 kB, the biggest file on the
+        // critical path. opsz stays variable, the browser picks it from the font size.
+        variationAxes: { wdth: 100, wght: { min: 400, max: 800 } },
+    })
     await writeFile(FONT_OUT, woff2)
     console.log(`\nfont${''.padEnd(30)} ${kb(ttf.length).padStart(9)}  ->  subset woff2 ${kb(woff2.length)}`)
 }

@@ -127,7 +127,8 @@
     width: 100%;
     max-width: 26rem;
     aspect-ratio: 1 / 1;
-    max-height: 15vh;
+    /* floor: on a landscape phone 15vh is ~58px and squashed the photo into a strip */
+    max-height: max(15vh, 7.5rem);
     object-fit: cover;
     border-radius: var(--radius-m);
     align-self: center;

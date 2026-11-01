@@ -92,7 +92,9 @@
 .industry-card.is-active .industry-label{
     bottom: var(--space-xl);
     color: var(--color-on-dark);
-    font-size: var(--text-3xl);
+    /* tied to the card as well as the viewport: single long words ("Mezőgazdaság")
+       were wider than the card and got cut off by its rounded clip */
+    font-size: min(var(--text-3xl), calc(var(--card-w) * 0.115));
     font-weight: var(--weight-bold);
     text-align: center;
 }

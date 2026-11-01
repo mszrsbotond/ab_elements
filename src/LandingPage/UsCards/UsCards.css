@@ -115,11 +115,24 @@
 }
 
 
-@media (max-width: 900px){
+/* five across only fits from ~1700px: below that the longest words ("megmunkálás")
+   ran out of their cards. Narrower screens get 3 or 2 columns and the sixth card,
+   so the grid always ends on a full row */
+@media (max-width: 1699px){
     .us-cards{
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         margin-left: 0;
         margin-right: 0;
+    }
+
+    .us-card--mobile-only{
+        display: flex;
+    }
+}
+
+@media (max-width: 900px){
+    .us-cards{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

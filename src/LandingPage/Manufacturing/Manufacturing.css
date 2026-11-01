@@ -579,3 +579,20 @@ html:has(.service-dialog[open]){
         font-size: var(--text-m);
     }
 }
+
+/* the smallest phones (320px): number, arrow and thumbnail left the title ~118px,
+   so "Szikraforgácsolás" broke mid-word. The thumbnail is decorative and goes first. */
+@media (max-width: 359px){
+    .service-card{
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-areas:
+            "number title toggle"
+            "body body body";
+        min-height: 3.75rem;
+        padding-right: var(--space-s);
+    }
+
+    .service-img{
+        display: none;
+    }
+}

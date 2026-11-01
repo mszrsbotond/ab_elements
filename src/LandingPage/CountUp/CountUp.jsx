@@ -6,15 +6,16 @@ const DURATION_MS = 1500
 // decelerating ease: races up, then settles onto the final value
 const easeOutCubic = t => 1 - (1 - t) ** 3
 
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 export default function CountUp({ value, suffix = '', className = '' }){
     const [shown, setShown] = useState(0)
     const ref = useRef(null)
+    // no animation wanted: show the final value straight away instead of counting
+    const still = prefersReducedMotion()
 
     useEffect(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-            setShown(value)
-            return
-        }
+        if (still) return
 
         let raf = 0
         const step = (start, now) => {
@@ -36,11 +37,11 @@ export default function CountUp({ value, suffix = '', className = '' }){
             io.disconnect()
             cancelAnimationFrame(raf)
         }
-    }, [value])
+    }, [value, still])
 
     return (
         <span ref={ref} className={`count-up ${className}`}>
-            <span aria-hidden="true">{shown}{suffix}</span>
+            <span aria-hidden="true">{still ? value : shown}{suffix}</span>
             <span className="count-up-reserve">{value}{suffix}</span>
         </span>
     )

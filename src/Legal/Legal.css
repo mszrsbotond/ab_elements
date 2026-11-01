@@ -157,6 +157,12 @@
         margin-bottom: var(--space-s);
     }
 
+    /* phone and e-mail sit on consecutive rows: give each a full 24px+ tap target */
+    .legal-data dd a{
+        display: inline-block;
+        padding-block: var(--space-2xs);
+    }
+
     .legal-table th,
     .legal-table td{
         display: block;

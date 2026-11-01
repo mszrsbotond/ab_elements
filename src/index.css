@@ -1,9 +1,9 @@
 @font-face {
 	font-family: 'Bricolage Grotesque';
 	src: url('./assets/BricolageGrotesque-Variable.woff2') format('woff2');
-	font-weight: 200 800;
-	/* the wdth axis in the font actually tops out at 100% */
-	font-stretch: 75% 100%;
+	/* the shipped file is instanced to these (scripts/optimize-assets.mjs): weights 400-800,
+	   width pinned at 100%, so no font-stretch range is declared */
+	font-weight: 400 800;
 	font-style: normal;
 	font-display: swap;
 }
@@ -75,7 +75,7 @@ table {
 	--text-m: 1rem;                               /* body */
 	--text-s: 0.9rem;                             /* captions, errors */
 	--text-xs: 0.8rem;                            /* fine print */
-	--text-eyebrow: clamp(0.7rem, 1vw, 0.85rem);  /* uppercase kickers */
+	--text-eyebrow: clamp(0.75rem, 1vw, 0.85rem); /* uppercase kickers; 12px floor keeps them legible */
 	--text-numeral: clamp(4rem, 6vw, 6.5rem);     /* decorative card numbers */
 
 	--weight-medium: 500;

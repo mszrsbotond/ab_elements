@@ -13,7 +13,9 @@
     inset: 0;
     z-index: 0;
     background-image: url('../../assets/img/hero-bg-lg.webp');
-    background-size: 100% auto;
+    /* cover, not 100% auto: between ~768 and ~995px the 560px min-height is taller than
+       the full-width photo, and 100% auto left bare strips above and below it */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     content: '';
@@ -146,6 +148,22 @@
 @media (prefers-reduced-motion: reduce){
     .menu-buttons a{
         transition-duration: 0.01ms;
+    }
+}
+
+/* portrait tablets: the full-size row is ~840px and wrapped "Kapcsolat" onto a line of its own */
+@media (min-width: 768px) and (max-width: 1023px){
+    .menu-buttons{
+        gap: var(--space-m);
+        padding: var(--space-xs) var(--space-m);
+    }
+
+    .menu-buttons a{
+        font-size: var(--text-s);
+    }
+
+    .menu-buttons a.cta{
+        padding: var(--space-xs) var(--space-m);
     }
 }
 

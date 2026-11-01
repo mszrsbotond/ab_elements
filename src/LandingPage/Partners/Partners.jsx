@@ -59,12 +59,12 @@ export default function Partners(){
                 <div className="partners-track partners-track--gray">
                     {logos.map((logo, i) => (
                         <span key={`a-${i}`} className="logo-wrap">
-                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} decoding="async" />
+                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} width={Math.round(logo.ratio * 100)} height="100" decoding="async" />
                         </span>
                     ))}
                     {logos.map((logo, i) => (
                         <span key={`b-${i}`} className="logo-wrap" aria-hidden="true">
-                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} decoding="async" />
+                            <img src={logo.src} alt={logo.alt} className="logo" style={logoStyle(logo.ratio)} width={Math.round(logo.ratio * 100)} height="100" decoding="async" />
                         </span>
                     ))}
                 </div>
